@@ -32,7 +32,7 @@ def get_null_columns(df):
             print(f'Column: {column} has {df.isna().sum()[column]} missing values')
 
 
-def fill_missing_values(train, test, ignore_variables=[]):
+def fill_missing_values(train, test, numerical_variables, categorical_variables, ignore_variables):
     for column in train.columns:
         if column not in ignore_variables:
             if train[column].dtype == 'O':

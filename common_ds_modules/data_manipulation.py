@@ -7,14 +7,11 @@ def get_numerical_categorical_variables(train, test, id_column):
     numerical_variables = []
 
     for column in train.columns:
-        if train[column].dtype == 'object':
+        if train[column].dtype == 'object' and column != id_column:
             categorical_variables.append(column)
         else:
-            if id_column != column:
-                if len(train[column].unique()) <= 10:
-                    categorical_variables.append(column)
-                else: # if you don't have the check, id columns have a lot of possible values
-                    numerical_variables.append(column)
+            if column != id_column:
+                numerical_variables.append(column)
 
     return numerical_variables, categorical_variables
 
